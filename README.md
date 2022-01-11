@@ -1,15 +1,19 @@
 # The Ergex Regular Expression Library
 
+## Introduction
+Ergex is a regular expression library that does a few things rather differently
+from many other libraries. None of the others quite did what I wanted, so I
+created ergex.
+
+It was designed to be particularly well suited for working with analysis of
+network data, or with highly fragmented, very large documents stored in
+distributed storage.
+
+Additionally, the `ShrinkSet` and push-oriented implementation of Aho-Corasick
+are probably worth looking at on their own.
+
 ## Features
 Ergex is a regular expression library with a few overarching design goals:
-
-#### POSIX-Compatible Matching and Submatching
-Ergex supports (almost) POSIX-compatible matching, including
-POSIX-compatible submatch extraction.
-
-#### UTF-8 and Byte-Oriented Matching
-Ergex supports matching both UTF-8 encoded text and raw bytes, and the
-two encodings may be mixed in the same expression.
 
 #### Push-Oriented
 Unlike most regular expression libraries, ergex is *push-oriented*.
@@ -26,6 +30,9 @@ network connection.
 Push-orientation is rare; the only major example I'm aware of is
 [HyperScan](https://hyperscan.io). Being able to read from streams (in a
 pull fashion) is more common but still relatively rare.
+
+Ergex comes with a novel implementation of the Aho-Corasick algorithm that
+is likewise push-oriented.
 
 #### Simultaneous Matching
 Ergex supports matching arbitrarily many expressions *simultaneously*.
@@ -53,6 +60,14 @@ input.
 Ergex allows expressions in a given scratch space to be selectively disabled.
 It uses a novel data structure (called a `ShrinkSet`) to allow resetting of the
 enabled set in `O(1)` time.
+
+#### POSIX-Compatible Matching and Submatching
+Ergex supports (almost) POSIX-compatible matching, including
+POSIX-compatible submatch extraction.
+
+#### UTF-8 and Byte-Oriented Matching
+Ergex supports matching both UTF-8 encoded text and raw bytes, and the
+two encodings may be mixed in the same expression.
 
 #### Fast Enough
 Ergex is fairly fast. Running `cargo test --release` takes about ten seconds on
