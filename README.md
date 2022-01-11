@@ -73,6 +73,9 @@ two encodings may be mixed in the same expression.
 Ergex is fairly fast. Running `cargo test --release` takes about ten seconds on
 my laptop.
 
+#### Safe
+Ergex is written in 100% safe Rust.
+
 ## Credits
 Ergex stands on the shoulders of giants: it uses the excellent `regex-syntax` crate
 for parsing expressions.
